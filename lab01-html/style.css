@@ -1,0 +1,18 @@
+body{font-family:Georgia,serif;margin:0;color:#2a2a2a;line-height:1.5;background:#fffdf8}
+
+header,main,footer{max-width:1000px;margin:0 auto;padding:12px 20px}header{border-bottom:2px solid #c9971c}
+
+nav ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:14px}
+a{color:#7a4e00}a[aria-current]{font-weight:bold}
+
+.logo{font-size:1.6em;font-weight:bold;text-decoration:none}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:6px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}article,aside,fieldset{border:1px solid #d9cfb8;padding:12px;border-radius:6px}
+
+img,video{max-width:100%}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #d9cfb8;padding:6px 8px;text-align:left}
+label{display:block;margin:8px 0 2px}
+footer{border-top:2px solid #c9971c;font-size:.9em}
+.logo img{width:.7em;height:.7em}
