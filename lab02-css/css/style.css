@@ -1,0 +1,112 @@
+/* ===== 1. Токены ===== */
+:root{--color-bg:#fbf8f1;--color-surface:#fff;--color-text:#252a36;--color-muted:#5d6475;--color-border:#ddd3bd;
+--color-brand:#1d3b6f;--color-brand-dark:#122650;--color-on-brand:#fff;--color-accent:#c9971c;--color-danger:#b3261e;
+--space-1:.5rem;--space-2:1rem;--space-3:1.5rem;--space-4:2.5rem;--radius:10px;--font-body:Georgia,"Times New Roman",serif;--font-head:"Trebuchet MS",Arial,sans-serif;
+--shadow:0 2px 10px rgb(29 59 111 / .12);--ease:cubic-bezier(.22,.8,.3,1);--t-fast:.2s;--container:1100px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--color-bg:#10141f;--color-surface:#1a2133;--color-text:#ecebe6;--color-muted:#a3a9b8;--color-border:#2e3850;--color-brand:#7fa6ee;--color-brand-dark:#a9c3f5;--color-on-brand:#10141f;--color-accent:#e0b445;--shadow:0 2px 10px rgb(0 0 0 / .5);}}
+:root[data-theme="dark"]{--color-bg:#10141f;--color-surface:#1a2133;--color-text:#ecebe6;--color-muted:#a3a9b8;--color-border:#2e3850;--color-brand:#7fa6ee;--color-brand-dark:#a9c3f5;--color-on-brand:#10141f;--color-accent:#e0b445;--shadow:0 2px 10px rgb(0 0 0 / .5);}
+/* ===== 2. Сброс и база ===== */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);line-height:1.6;transition:background-color var(--t-fast),color var(--t-fast)}
+img,video{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--font-head);color:var(--color-brand);line-height:1.2}
+a{color:var(--color-brand)}a:hover{color:var(--color-accent)}
+:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--space-2)}
+.skip{position:absolute;left:-999px;background:var(--color-surface);padding:var(--space-1)}.skip:focus{left:var(--space-1);top:var(--space-1);z-index:50}
+/* ===== 3. Шапка и меню (Flexbox) ===== */
+.header{background:var(--color-surface);border-bottom:3px solid var(--color-accent);position:relative}
+.header__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);padding-block:var(--space-1)}
+.header__logo{display:flex;align-items:center;gap:var(--space-1);font:700 1.5rem var(--font-head);text-decoration:none}
+.header__logo img{width:.7em;height:.7em}
+.header__tools{display:flex;align-items:center;gap:var(--space-1)}
+.nav__toggle{position:absolute;opacity:0;pointer-events:none}
+.nav__burger{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--color-border);border-radius:var(--radius);cursor:pointer;font-size:1.4rem}
+.nav__toggle:focus-visible~.nav__burger{outline:3px solid var(--color-accent)}
+.nav__list{display:none;flex-direction:column;list-style:none;margin:0;padding:var(--space-1) var(--space-2);border-top:1px solid var(--color-border)}
+.nav__toggle:checked~.nav__list{display:flex}
+.nav__link{display:block;padding:.6rem .5rem;text-decoration:none;border-radius:6px}
+.nav__link:hover,.nav__link[aria-current]{background:var(--color-brand);color:var(--color-on-brand)}
+.theme-toggle{width:44px;height:44px;border:1px solid var(--color-border);border-radius:50%;background:var(--color-surface);color:var(--color-text);font-size:1.2rem;cursor:pointer;transition:transform var(--t-fast)}
+.theme-toggle:hover{transform:rotate(180deg)}
+/* ===== 4. Основные блоки ===== */
+.main{padding-block:var(--space-3)}
+.section{margin-block:var(--space-4)}
+.hero{background:linear-gradient(135deg,var(--color-brand),var(--color-brand-dark));color:var(--color-on-brand);border-radius:var(--radius);padding:var(--space-4) var(--space-3)}
+.hero__title{color:var(--color-on-brand);margin:0 0 var(--space-1)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-2)}
+.panel{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-2);box-shadow:var(--shadow)}
+/* ===== 5. Каталог: сайдбар + контент (Grid) ===== */
+.layout{display:grid;gap:var(--space-3)}
+.grid-cards{display:grid;gap:var(--space-2);grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.card{display:flex;flex-direction:column;gap:var(--space-1);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-2);box-shadow:var(--shadow);overflow:hidden;transition:transform var(--t-fast) var(--ease)}
+.card:hover{transform:translateY(-4px)}
+.card__img{aspect-ratio:1;width:100%;object-fit:cover;border-radius:6px;transition:transform .4s var(--ease)}
+.card:hover .card__img{transform:rotate(4deg) scale(1.05)}
+.card__title{margin:0;font-size:1.05rem}.card__meta{margin:0;color:var(--color-muted)}.card__price{margin:0;font-weight:700}
+.card__link{margin-top:auto}
+/* ===== 6. Кнопки ===== */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.5rem 1.2rem;border:2px solid var(--color-accent);border-radius:var(--radius);background:var(--color-accent);color:#1b1b1b;font:700 1rem var(--font-head);text-decoration:none;cursor:pointer;transition:transform var(--t-fast) var(--ease)}
+.btn:hover{transform:translateY(-3px) scale(1.03);color:#1b1b1b}.btn:active{transform:translateY(0) scale(.98)}
+.btn--ghost{background:transparent;color:var(--color-on-brand);border-color:var(--color-on-brand)}.btn--ghost:hover{color:var(--color-on-brand)}
+.btn--pulse::after{content:"";position:absolute;inset:-2px;border:2px solid var(--color-accent);border-radius:inherit;animation:pulse 1.8s ease-out infinite;pointer-events:none}
+/* ===== 7. Формы ===== */
+.form{display:grid;gap:var(--space-1);max-width:560px}
+.form__label{display:block;margin-top:var(--space-1);font-weight:700}
+.form__input{width:100%;min-height:44px;padding:.5rem .75rem;border:2px solid var(--color-border);border-radius:8px;background:var(--color-surface);color:var(--color-text);font:inherit;transition:border-color var(--t-fast)}
+.form__input:hover{border-color:var(--color-brand)}
+.form__input:focus-visible{border-color:var(--color-accent);outline:3px solid var(--color-accent);outline-offset:1px}
+.form__input:user-invalid{border-color:var(--color-danger)}.form__input:user-valid{border-color:#2e7d32}
+.form__check{display:flex;align-items:center;gap:var(--space-1);min-height:44px}
+.form__fieldset{border:1px solid var(--color-border);border-radius:8px}
+/* ===== 8. Таблица ===== */
+.table-wrap{overflow-x:auto}
+.table{width:100%;min-width:480px;border-collapse:collapse}
+.table__cell{padding:.6rem .8rem;border:1px solid var(--color-border);text-align:left}
+.table__head{background:var(--color-brand);color:var(--color-on-brand)}
+/* ===== 9. Страница изделия (grid-template-areas) ===== */
+.item{display:grid;gap:var(--space-3);grid-template-areas:"image" "desc" "booking"}
+.item__image{grid-area:image}.item__desc{grid-area:desc}.item__booking{grid-area:booking}
+/* ===== 10. Эффекты ===== */
+.tooltip{position:relative;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--color-brand);color:var(--color-on-brand);font:700 .85rem var(--font-head);cursor:help}
+.tooltip::after{content:attr(data-tip);position:absolute;left:50%;bottom:130%;width:max-content;max-width:220px;padding:.4rem .6rem;border-radius:6px;background:var(--color-text);color:var(--color-bg);font-weight:400;opacity:0;transform:translate(-50%,6px);transition:opacity .25s,transform .25s;pointer-events:none}
+.tooltip:hover::after,.tooltip:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+.notice{padding:var(--space-2);border-left:6px solid var(--color-accent);background:var(--color-surface);border-radius:var(--radius);box-shadow:var(--shadow);animation:notice-in .6s var(--ease) both}
+.zoom{overflow:hidden;border-radius:var(--radius)}.zoom__img{transition:transform .4s var(--ease)}.zoom:hover .zoom__img{transform:scale(1.12)}
+.rotate-img{transition:transform .6s var(--ease)}.rotate-img:hover{transform:rotate(12deg)}
+.spinner{width:36px;height:36px;border:4px solid var(--color-border);border-top-color:var(--color-brand);border-radius:50%;animation:spin 1s linear infinite}
+.flip{width:220px;height:280px;perspective:900px;outline-offset:4px}
+.flip__inner{position:relative;width:100%;height:100%;transition:transform .7s var(--ease);transform-style:preserve-3d}
+.flip:hover .flip__inner,.flip:focus-within .flip__inner,.flip:focus .flip__inner{transform:rotateY(180deg)}
+.flip__face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-1);padding:var(--space-2);text-align:center;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip__face--back{background:var(--color-brand);color:var(--color-on-brand);transform:rotateY(180deg)}
+.boom{position:relative;display:inline-block;margin:var(--space-2);font:700 1.3rem var(--font-head);color:var(--color-brand)}
+.boom::before,.boom::after{content:"";position:absolute;left:50%;top:50%;width:100%;height:100%;border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.3)}
+.boom::before{border:3px solid var(--color-accent)}.boom::after{border:4px dotted var(--color-brand)}
+.boom:hover::before{animation:boom .7s ease-out}.boom:hover::after{animation:boom .9s .1s ease-out}
+.skeleton{position:relative;overflow:hidden;min-height:260px;background:var(--color-border);border-radius:var(--radius)}
+.skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgb(255 255 255 / .55),transparent);transform:translateX(-100%);animation:shimmer 1.4s infinite}
+.reveal{animation:fade-up .6s var(--ease) both}
+@supports (animation-timeline:view()){.reveal{animation:fade-up linear both;animation-timeline:view();animation-range:entry 0% cover 30%}}
+/* ===== 11. Подвал ===== */
+.footer{margin-top:var(--space-4);padding-block:var(--space-3);border-top:3px solid var(--color-accent);color:var(--color-muted);font-size:.9rem}
+/* ===== 12. Анимации ===== */
+@keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pulse{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.35)}}
+@keyframes notice-in{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{to{transform:translateX(100%)}}
+@keyframes boom{from{opacity:1;transform:translate(-50%,-50%) scale(.4)}to{opacity:0;transform:translate(-50%,-50%) scale(1.9)}}
+/* ===== 13. Адаптив (mobile-first) ===== */
+@media (min-width:768px){
+ .nav__burger{display:none}
+ .nav__list{display:flex;flex-direction:row;flex-wrap:wrap;gap:.25rem;border-top:0;padding:0 0 var(--space-1)}
+ .layout{grid-template-columns:260px 1fr;align-items:start}
+ .item{grid-template-columns:1fr 1fr;grid-template-areas:"image desc" "booking booking"}
+}
+@media (min-width:1100px){
+ .item{grid-template-columns:1fr 1fr 1.2fr;grid-template-areas:"image desc booking"}
+ .hero{padding:var(--space-4)}
+}
+/* ===== 14. Уменьшение движения ===== */
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none;transition:none;scroll-behavior:auto}}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Регистрация — ювелирная мастерская «Золотая звезда»: украшения на заказ, ремонт, гравировка.">
+  <title>Регистрация — Золотая звезда</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#content">Перейти к основному содержимому</a>
+  <header class="header">
+    <div class="container header__bar">
+      <a class="header__logo" href="jewerly.html"><img src="img/logo.png" alt="" width="28" height="28"> Золотая звезда</a>
+      <div class="header__tools"><button class="theme-toggle" type="button" aria-label="Переключить тему">◐</button></div>
+    </div>
+    <nav class="nav container" aria-label="Главное меню">
+      <input class="nav__toggle" type="checkbox" id="menu" aria-label="Открыть меню">
+      <label class="nav__burger" for="menu" aria-hidden="true">☰</label>
+      <ul class="nav__list"><li><a class="nav__link" href="jewerly.html">Главная</a></li><li><a class="nav__link" href="catalog.html">Каталог</a></li><li><a class="nav__link" href="services.html">Услуги и цены</a></li><li><a class="nav__link" href="about.html">О мастерской</a></li><li><a class="nav__link" href="faq.html">Вопросы</a></li><li><a class="nav__link" href="contacts.html">Контакты</a></li><li><a class="nav__link" href="login.html">Вход</a></li><li><a class="nav__link" href="register.html" aria-current="page">Регистрация</a></li><li><a class="nav__link" href="profile.html">Кабинет</a></li></ul>
+    </nav>
+  </header>
+  <main class="main container" id="content">
+    <h1 class="page-title">Регистрация</h1>
+    <form class="form panel" action="register.html" method="post">
+      <label class="form__label" for="n">Имя *</label><input class="form__input" id="n" name="name" required minlength="2"><label class="form__label" for="e">E-mail *</label><input class="form__input" id="e" type="email" name="email" required>
+      <label class="form__label" for="p">Пароль (от 8 символов) *</label><input class="form__input" id="p" type="password" name="password" required minlength="8"><label class="form__label" for="b">Дата рождения</label><input class="form__input" id="b" type="date" name="birth" max="2008-12-31">
+      <label class="form__check"><input type="checkbox" name="agree" required> Принимаю условия *</label>
+      <button class="btn" type="submit">Создать аккаунт</button>
+    </form><p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>Сайт «Золотая звезда» — ювелирная мастерская</p>
+      <p>© Ювелирная мастерская «Золотая звезда», 2026. Организация: ООО «Золотая звезда». Год разработки: 2026.</p>
+    </div>
+  </footer>
+</body>
+</html>
