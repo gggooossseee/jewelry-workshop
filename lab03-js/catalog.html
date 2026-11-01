@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Каталог украшений — ювелирная мастерская «Золотая звезда»: украшения на заказ, ремонт, гравировка.">
+  <title>Каталог украшений — Золотая звезда</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#content">Перейти к основному содержимому</a>
+  <header class="header">
+    <div class="container header__bar">
+      <a class="header__logo" href="jewerly.html"><img src="img/logo.png" alt="" width="28" height="28"> Золотая звезда</a>
+      <div class="header__tools"><button class="theme-toggle" type="button" aria-label="Переключить тему">◐</button></div>
+    </div>
+    <nav class="nav container" aria-label="Главное меню">
+      <input class="nav__toggle" type="checkbox" id="menu" aria-label="Открыть меню">
+      <label class="nav__burger" for="menu" aria-hidden="true">☰</label>
+      <ul class="nav__list"><li><a class="nav__link" href="jewerly.html">Главная</a></li><li><a class="nav__link" href="catalog.html" aria-current="page">Каталог</a></li><li><a class="nav__link" href="services.html">Услуги и цены</a></li><li><a class="nav__link" href="about.html">О мастерской</a></li><li><a class="nav__link" href="faq.html">Вопросы</a></li><li><a class="nav__link" href="contacts.html">Контакты</a></li><li><a class="nav__link" href="login.html">Вход</a></li><li><a class="nav__link" href="register.html">Регистрация</a></li><li><a class="nav__link" href="profile.html">Кабинет</a></li></ul>
+    </nav>
+  </header>
+  <main class="main container" id="content">
+    <h1 class="page-title">Каталог украшений</h1>
+    <div class="layout">
+      <aside class="panel layout__sidebar"><h2>Фильтр</h2>
+        <form class="form" id="filters" action="catalog.html" method="get" novalidate>
+          <label class="form__label" for="q">Название</label><input class="form__input" id="q" type="search" name="q" placeholder="кольцо, серьги" autocomplete="off">
+          <label class="form__label" for="cat">Категория</label><select class="form__input" id="cat" name="category"><option value="">Все</option><option value="ring">Кольца</option><option value="ear">Серьги</option><option value="pend">Подвески</option><option value="brac">Браслеты</option></select>
+          <fieldset class="form__fieldset"><legend>Металл</legend><label class="form__check"><input type="radio" name="metal" value="any" checked> Любой</label><label class="form__check"><input type="radio" name="metal" value="gold"> Золото</label><label class="form__check"><input type="radio" name="metal" value="silver"> Серебро</label></fieldset>
+          <label class="form__label" for="price">Цена до: <output id="price-out" for="price">50 000 ₽</output></label><input class="form__input" id="price" type="range" name="price" min="1000" max="50000" step="500" value="50000">
+          <label class="form__label" for="date">Нужно к дате</label><input class="form__input" id="date" type="date" name="date">
+          <label class="form__check"><input type="checkbox" name="stock" value="1"> Только в наличии</label>
+          <label class="form__check"><input type="checkbox" name="fav" value="1"> Только избранное</label>
+          <label class="form__label" for="sort">Сортировка</label><select class="form__input" id="sort" name="sort"><option value="new">Сначала новые</option><option value="price-asc">Цена: по возрастанию</option><option value="price-desc">Цена: по убыванию</option><option value="title">По названию А–Я</option></select>
+          <button class="btn" type="submit">Применить</button><button class="btn btn--ghost form__reset" type="reset">Сбросить</button>
+        </form></aside>
+      <section class="layout__content"><h2>Изделия</h2>
+        <p class="count" id="count" aria-live="polite"></p>
+        <div class="grid-cards" id="catalog-grid"></div>
+        <div class="empty panel" id="empty" hidden><p>По вашему запросу ничего не найдено.</p><button class="btn" type="button" data-action="reset-filters">Сбросить фильтры</button></div>
+      </section>
+    </div>
+    <template id="card-tpl"><article class="card reveal" data-id=""><img class="card__img" src="" alt="" width="200" height="200"><h3 class="card__title"></h3><p class="card__meta"></p><p class="card__price"></p><div class="card__actions"><button class="fav" type="button" data-action="fav" aria-pressed="false">♡</button><button class="btn btn--sm" type="button" data-action="order">Заказать</button></div></article></template>
+    <dialog class="dialog" id="order-dialog" aria-labelledby="order-title"><div class="dialog__body">
+      <h2 id="order-title">Заказ</h2>
+      <form class="form" id="order-form" novalidate>
+        <p class="form__hint" data-lead-hint></p>
+        <div class="form__group"><label class="form__label" for="o-name">Имя и фамилия *</label><input class="form__input" id="o-name" name="name" autocomplete="name"></div>
+        <div class="form__group"><label class="form__label" for="o-phone">Телефон *</label><input class="form__input" id="o-phone" type="tel" name="phone" placeholder="+79991234567" autocomplete="tel"></div>
+        <div class="form__group" data-size-field><label class="form__label" for="o-size">Размер кольца (14–24) *</label><input class="form__input" id="o-size" type="text" inputmode="decimal" name="size"></div>
+        <div class="form__group"><label class="form__label" for="o-date">Желаемая дата получения *</label><input class="form__input" id="o-date" type="date" name="date"></div>
+        <div class="form__group"><label class="form__label" for="o-engr">Гравировка (до 20 символов)</label><input class="form__input" id="o-engr" name="engraving" maxlength="40"></div>
+        <label class="form__check"><input type="checkbox" id="o-agree" name="agree"> Согласен на обработку персональных данных *</label>
+        <div class="dialog__actions"><button class="btn" type="submit">Оформить заказ</button><button class="btn btn--ghost btn--ghost-dark" type="button" data-close>Отмена</button></div>
+      </form></div></dialog>
+  
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>Сайт «Золотая звезда» — ювелирная мастерская</p>
+      <p>© Ювелирная мастерская «Золотая звезда», 2026. Организация: ООО «Золотая звезда». Год разработки: 2026.</p>
+    </div>
+  </footer>
+  <script type="module" src="js/catalog.js"></script>
+</body>
+</html>
